@@ -1,0 +1,116 @@
+<div class="container">
+
+  <div class="row" *ngIf="hero">
+    <div class="col-md-8 col-md-offset-2 HeroDetail">
+      <h1 class="HeroTitle text-center">{{hero.HeroName}}</h1>
+      <ng-container *ngIf="heroIMG.length <= 1; else slideImage">
+        <img src="{{heroIMG[0]}}" alt="{{hero.HeroName}}" (error)="errorImg($event)" />
+      </ng-container>
+      <ng-template #slideImage>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" *ngFor="let h of heroIMG; let i=index" [attr.data-slide-to]="i" [class.active]="i == 0"></li>
+
+          </ol>
+          <div class="carousel-inner">
+            <div class="item" *ngFor="let h of heroIMG; let i=index" [class.active]="i == 0">
+              <img src="{{h}}" alt="{{hero.HeroName}}" (error)="errorImg($event)">     
+            </div>
+          </div>
+          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+          <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+       
+       
+      </ng-template>
+
+      <div class="HeroDesc">
+        {{hero.HeroDesc}}
+      </div>
+      <div class="HeroVoted">
+        <span class="glyphicon glyphicon-heart" (click)="onVoteHero()"></span><span class="Voted"> {{hero.HeroVoted}}</span> 
+      </div>
+
+    </div>
+
+  
+        
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Voted!</strong> อัพเดทข้อมูลเรียบร้อยแล้ว
+    </div>
+
+    
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>Error!</strong> คุณโหวตเกินโควต้าแล้ว (3 ครั้งต่อวัน)
+    </div>
+    
+    
+  </div>
+  
+  <ng-container *ngIf="heroComment.length > 0">
+    <div class="commentAll">
+      
+      <span class="commentTitle">ความคิดเห็น</span>
+      <div *ngFor="let c of heroComment; let i=index" class="row commentbBox">
+
+        <ng-container *ngIf="i == 0 || c.CommentGroup != heroComment[i-1].CommentGroup; else subComment">
+          <div class="col-xs-12 commentDetail">
+            <div *ngIf="adminService.isLoggedin" (click)="DeleteComment(c.CommentID)" class="glyphicon glyphicon-remove-circle"></div>
+            <div class="commentMessage">
+              {{c.Message}}
+            </div>   
+            <div class="commentPoster">
+              Name: {{c.Name}}<br/>
+              Email: {{c.Email}}<br/>
+              {{c.CommentDate | date:'d MMMM yyyy เวลา HH.mm น.'}}
+
+            
+            </div> 
+          </div>   
+        </ng-container>
+        <ng-template #subComment>
+          <div class="col-xs-11 col-xs-offset-1 commentDetail">
+            <div class="commentMessage">
+              {{c.Message}}
+            </div>   
+            <div class="commentPoster">
+              Name: {{c.Name}}<br/>
+              Email: {{c.Email}}<br/>
+              {{c.CommentDate | date:'d MMMM yyyy เวลา HH.mm น.'}}
+            </div> 
+          </div>        
+        </ng-template>
+
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="hero" class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="mainPostComment">
+        <div class="text-center"><h3>แสดงความคิดเห็น</h3></div>
+        <form (submit)="onSubmitComment()">
+          
+          <div class="form-group">
+            <label for="">Name: </label>
+            <input type="text" [(ngModel)]="comment.Name" name="Name" class="form-control" placeholder="Name...">
+          </div>
+          <div class="form-group">
+            <label for="">Email: </label>
+            <input type="text" [(ngModel)]="comment.Email" name="Email" class="form-control" placeholder="Email...">
+          </div>
+          <div class="form-group">
+            <label for="">Comment: </label>
+            <textarea [(ngModel)]="comment.Message" name="Message" class="form-control" placeholder="Comment..." rows="5"></textarea>
+          </div>
+          
+          <div class="text-center"><input type="submit" value="Submit"> <input type="reset" value="Reset"></div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</div>

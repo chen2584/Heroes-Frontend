@@ -1,0 +1,45 @@
+
+<div class="container-fluid welcomeHeader text-center">
+  <h1>Welcome to my little project!</h1>
+  ทำขึ้นเพื่อทบทวน ASP.NET Core, EF Core และ Angular 5 เท่านั้น 
+</div>
+
+<div class="container">
+
+  <div *ngFor="let h of hero; let i=index" class="row"> <!--ถ้า i เป็น array ช่องแรก หรือ ทุกๆ เลขคี่/-->
+    <ng-container *ngIf="i == 0 || i % 2 == 1">
+      <div class="col-md-6 HeroBox" [class.col-md-offset-3]="i == 0">
+        <a routerLink="/detail/{{hero[i].HeroID}}">
+          <div class="subHeroBox">
+            <img src="{{hero[i].HeroIMG}}" alt="{{hero[i].HeroName}}" (error)="errorImg($event)"/>
+            <div class="heroName">{{i+1}}.{{hero[i].HeroName}}</div>
+            <div class="heroScore">
+              <span class="glyphicon glyphicon-heart"></span> {{hero[i].HeroVoted}}
+              <span class="glyphicon glyphicon-comment"></span> {{hero[i].HeroCommented}}
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 HeroBox" *ngIf="hero.length > (i+1) && i > 0"> <!--ถ้า i ไม่ใช่ array ช่องแรก/-->
+        <a routerLink="/detail/{{hero[i+1].HeroID}}">
+          <div class="subHeroBox">
+            <img src="{{hero[i+1].HeroIMG}}" alt="{{hero[i+1].HeroName}}" (error)="errorImg($event)"/>
+            <div class="heroName">{{i+2}}.{{hero[i+1].HeroName}}</div>
+            <div class="heroScore">
+              <span class="glyphicon glyphicon-heart"></span> {{hero[i+1].HeroVoted}}
+              <span class="glyphicon glyphicon-comment"></span> {{hero[i+1].HeroCommented}}
+            </div>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="hero" class="loadMoreHero"> <!-- If not null  ปุ่มโหลดเพิ่ม-->
+    <button (click)="loadMoreHero();" title="Load More Hero"
+    class="btn btn-large btn-block btn-default" [disabled]="disabledBtn" id="loadBtn">Load More...</button> 
+  </div>
+
+
+</div>

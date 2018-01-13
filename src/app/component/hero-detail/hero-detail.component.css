@@ -1,0 +1,32 @@
+.HeroDetail { text-align: center; padding-top: 30px; }
+.HeroDetail .HeroTitle { color: blue; padding-bottom: 10px; margin-top: 0px; text-decoration: underline; }
+.HeroDetail img { width: 100%; border: 1px solid #CCC; box-shadow: 3px 3px 5px #888; border-radius: 20px; }
+.HeroDetail .HeroDesc { padding-top: 20px; font-size: 1.8em; }
+.HeroDetail .HeroVoted { text-align: center; }
+.HeroDetail .HeroVoted .glyphicon-heart { font-size: 4em; color: red; cursor: pointer; }
+.HeroDetail .HeroVoted .glyphicon-heart:hover { transform: scale(1.5);  }
+.HeroDetail .HeroVoted .Voted { font-size: 5em; }
+
+.alert{ position: fixed; top: 60px; right:2%; width: 30%; text-align: center; display: none; z-index: 1; }
+.alert-success { background-color: #27a54b; color: #FFF; }
+.alert-danger { background-color: red; color: #FFF; }
+
+/* Comment */
+.commentAll { margin-top: 20px; }
+.commentTitle { font-size: 1.5em; }
+.commentbBox { padding: 0 5px; box-sizing: border-box; }
+.commentDetail { border: 1px solid #CCC; border-radius: 5px; margin-top: 5px; background-color: #fbfecd; position: relative; }
+.commentDetail .commentMessage { min-height: 100px; padding: 10px 0; }
+.commentDetail .commentPoster { border-top: 1px solid #CCC; padding: 5px 0; font-size: 0.9em; line-height: 1.1; }
+.commentDetail .glyphicon-remove-circle { color: red; position: absolute; right: 0; font-size: 1.5em; cursor: pointer; }
+
+.mainPostComment { border: 1px solid #CCC; box-sizing: border-box; padding: 10px; margin: 20px 5px; 
+                    margin-bottom: 0px; background-color: #bdeaef; }
+
+@media screen and (max-width: 830px) {
+    .alert{ top: 90%; left:2%; width: 96%; }
+}
+
+@media screen and (max-width: 500px) {
+    .HeroDetail .HeroDesc { font-size: 1.5em; }
+}

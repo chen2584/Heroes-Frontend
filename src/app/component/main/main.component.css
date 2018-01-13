@@ -1,0 +1,20 @@
+.welcomeHeader { background-color: #EEE; line-height: 30px; padding: 100px 0; font-size: 24px; }
+.welcomeHeader h1 { font-size: 63px; }
+.HeroBox .subHeroBox { box-sizing: border-box; border: 1px solid #CCC; margin-top: 30px; border-radius: 10px; }
+.HeroBox .subHeroBox img { width: 100%; max-height: 300px; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+.HeroBox .subHeroBox .heroName { text-align: center; font-size: 36px; padding: 10px 0 10px 0; border-top: 1px solid #CCC; }
+.HeroBox a { color: #555; text-decoration: none; }
+.HeroBox a:hover { color: #555; text-decoration: none; }
+.HeroBox .subHeroBox .heroScore { font-size: 1.9em; text-align: center; }
+.glyphicon-heart { color: red;}
+.loadMoreHero { margin-top: 30px; }
+
+@media screen and (max-width: 767px){
+    .welcomeHeader { padding: 60px 0; font-size: 14px; }
+    .welcomeHeader h1 { font-size: 32px; }
+}
+
+@media screen and (max-width: 460px){
+    .HeroBox .subHeroBox .heroName { font-size: 24px; padding: 10px 0; }
+    .HeroBox .subHeroBox .heroScore { font-size: 1.2em; }
+}
